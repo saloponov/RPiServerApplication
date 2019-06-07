@@ -31,12 +31,19 @@ def rele_set(pin, value):
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, GPIO.HIGH if value else GPIO.LOW)
     return str(pin) + " = " + str(GPIO.input(pin))
-    
 
-#if name == 'main':
-#    app.run(debug = True, host = '0.0.0.0')
+@app.route('/lock')
+def lock():
+    GPIO.cleanup(21)
+    GPIO.setup(21, GPIO.LOW)
+    return "Locked!"
+
+@app.route('/unlock')
+def unlock():
+    GPIO.cleanup(21)
+    GPIO.setup(21, GPIO.HIGH)
+    return "Opend!"
     
 if __name__ == '__main__':
     app.run(debug = True, host = '0.0.0.0')
-
 
