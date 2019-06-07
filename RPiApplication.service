@@ -1,0 +1,14 @@
+[Unit]
+Description=RPiApplication
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u app.py
+WorkingDirectory=/home/pi/RPiApplication
+StandartOutput=inherit
+StandartError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
